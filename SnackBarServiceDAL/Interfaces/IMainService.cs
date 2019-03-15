@@ -19,5 +19,7 @@ namespace SnackBarServiceDAL.Interfaces
         void FinishOrder(OrderBindingModel model);
 
         void PayOrder(OrderBindingModel model);
+
+        void PutProductOnStock(StockProductBindingModel model);
     }
 }

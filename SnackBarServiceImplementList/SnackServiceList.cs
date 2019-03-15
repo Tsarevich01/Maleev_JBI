@@ -4,6 +4,7 @@ using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SnackBarServiceImplementList
 {
@@ -18,105 +19,66 @@ namespace SnackBarServiceImplementList
 
         public List<SnackViewModel> GetList()
         {
-            List<SnackViewModel> result = new List<SnackViewModel>();
-
-            for (int i = 0; i < source.Snacks.Count; ++i)
+            List<SnackViewModel> result = source.Snacks
+            .Select(rec => new SnackViewModel
             {
-                List<SnackProductViewModel> snackProducts = new List<SnackProductViewModel>();
-
-                for (int j = 0; j < source.SnackProducts.Count; ++j)
-                {
-                    if (source.SnackProducts[j].SnackId == source.Snacks[i].Id)
-                    {
-                        string productName = string.Empty;
-                        for (int k = 0; k < source.Products.Count; ++k)
-                        {
-                            if (source.SnackProducts[j].ProductId == source.Products[k].Id)
-                            {
-                                productName = source.Products[k].ProductName;
-                                break;
-                            }
-                        }
-                        snackProducts.Add(new SnackProductViewModel
-                        {
-                            Id = source.SnackProducts[j].Id,
-                            SnackId = source.SnackProducts[j].SnackId,
-                            ProductId = source.SnackProducts[j].ProductId,
-                            ProductName = productName,
-                            Count = source.SnackProducts[j].Count
-                        });
-
-                    }
-                }
-
-                result.Add(new SnackViewModel
-                {
-                    Id = source.Snacks[i].Id,
-                    SnackName = source.Snacks[i].SnackName,
-                    Price = source.Snacks[i].Price,
-                    SnackProducts = snackProducts
-                });
-            }
+                Id = rec.Id,
+                SnackName = rec.SnackName,
+                Price = rec.Price,
+                SnackProducts = source.SnackProducts
+            .Where(recPC => recPC.SnackId == rec.Id)
+           .Select(recPC => new SnackProductViewModel
+           {
+               Id = recPC.Id,
+               SnackId = recPC.SnackId,
+               ProductId = recPC.ProductId,
+               ProductName = source.Products.FirstOrDefault(recC =>
+                 recC.Id == recPC.ProductId)?.ProductName,
+               Count = recPC.Count
+           })
+           .ToList()
+            })
+            .ToList();
+            
             return result;
         }
 
         public SnackViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Snacks.Count; ++i)
+            Snack element = source.Snacks.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                // требуется дополнительно получить список компонентов для изделия и их количество
-                List<SnackProductViewModel> setDishes = new List<SnackProductViewModel>();
-                for (int j = 0; j < source.SnackProducts.Count; ++j)
+                return new SnackViewModel
                 {
-                    if (source.SnackProducts[j].SnackId == source.Snacks[i].Id)
-                    {
-                        string SostavName = string.Empty;
-                        for (int k = 0; k < source.Products.Count; ++k)
-                        {
-                            if (source.SnackProducts[j].ProductId == source.Products[k].Id)
-                            {
-                                SostavName = source.Products[k].ProductName;
-                                break;
-                            }
-                        }
-                        setDishes.Add(new SnackProductViewModel
-                        {
-                            Id = source.SnackProducts[j].Id,
-                            SnackId = source.SnackProducts[j].SnackId,
-                            ProductId = source.SnackProducts[j].ProductId,
-                            ProductName = SostavName,
-                            Count = source.SnackProducts[j].Count
-                        });
-                    }
-                }
-                if (source.Snacks[i].Id == id)
+                    Id = element.Id,
+                    SnackName = element.SnackName,
+                    Price = element.Price,
+                    SnackProducts = source.SnackProducts
+                .Where(recPC => recPC.SnackId == element.Id)
+                .Select(recPC => new SnackProductViewModel
                 {
-                    return new SnackViewModel
-                    {
-                        Id = source.Snacks[i].Id,
-                        SnackName = source.Snacks[i].SnackName,
-                        Price = source.Snacks[i].Price,
-                        SnackProducts = setDishes
-                    };
-                }
+                    Id = recPC.Id,
+                    SnackId = recPC.SnackId,
+                    ProductId = recPC.ProductId,
+                    ProductName = source.Products.FirstOrDefault(recC =>
+     recC.Id == recPC.ProductId)?.ProductName,
+                    Count = recPC.Count
+                })
+               .ToList()
+                };
             }
             throw new Exception("Элемент не найден");
         }
-
         public void AddElement(SnackBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Snacks.Count; ++i)
+            Snack element = source.Snacks.FirstOrDefault(rec => rec.SnackName ==
+           model.SnackName);
+            if (element != null)
             {
-                if (source.Snacks[i].Id > maxId)
-                {
-                    maxId = source.Snacks[i].Id;
-                }
-                if (source.Snacks[i].SnackName == model.SnackName)
-                {
-                    throw new Exception("Уже есть набор с таким названием");
-                }
+                throw new Exception("Уже есть изделие с таким названием");
             }
+            int maxId = source.Snacks.Count > 0 ? source.Snacks.Max(rec => rec.Id) :
+           0;
             source.Snacks.Add(new Snack
             {
                 Id = maxId + 1,
@@ -124,144 +86,100 @@ namespace SnackBarServiceImplementList
                 Price = model.Price
             });
             // компоненты для изделия
-            int maxPCId = 0;
-            for (int i = 0; i < source.SnackProducts.Count; ++i)
-            {
-                if (source.SnackProducts[i].Id > maxPCId)
-                {
-                    maxPCId = source.SnackProducts[i].Id;
-                }
-            }
+            int maxPCId = source.SnackProducts.Count > 0 ?
+           source.SnackProducts.Max(rec => rec.Id) : 0;
             // убираем дубли по компонентам
-            for (int i = 0; i < model.SnackProduct.Count; ++i)
-            {
-                for (int j = 1; j < model.SnackProduct.Count; ++j)
-                {
-                    if (model.SnackProduct[i].ProductId ==
-                    model.SnackProduct[j].ProductId)
-                    {
-                        model.SnackProduct[i].Count +=
-                        model.SnackProduct[j].Count;
-                        model.SnackProduct.RemoveAt(j--);
-                    }
-                }
-            }
+            var groupProducts = model.SnackProduct
+            .GroupBy(rec => rec.ProductId)
+           .Select(rec => new
+           {
+               ProductId = rec.Key,
+               Count = rec.Sum(r => r.Count)
+           });
             // добавляем компоненты
-            for (int i = 0; i < model.SnackProduct.Count; ++i)
+            foreach (var groupProduct in groupProducts)
             {
                 source.SnackProducts.Add(new SnackProduct
                 {
                     Id = ++maxPCId,
                     SnackId = maxId + 1,
-                    ProductId = model.SnackProduct[i].ProductId,
-                    Count = model.SnackProduct[i].Count
+
+                    ProductId = groupProduct.ProductId,
+                    Count = groupProduct.Count
                 });
             }
         }
-
         public void UpdElement(SnackBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Snacks.Count; ++i)
+            Snack element = source.Snacks.FirstOrDefault(rec => rec.SnackName ==
+                model.SnackName && rec.Id != model.Id);
+            if (element != null)
             {
-                if (source.Snacks[i].Id == model.Id)
-                {
-                    index = i;
-                }
-
-                if (source.Snacks[i].SnackName == model.SnackName && source.Snacks[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть набор с таким названием");
-                }
+                throw new Exception("Уже есть изделие с таким названием");
             }
-
-            if (index == -1)
+            element = source.Snacks.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-
-            source.Snacks[index].SnackName = model.SnackName;
-            source.Snacks[index].Price = model.Price;
-            int maxPCId = 0;
-
-            for (int i = 0; i < source.SnackProducts.Count; ++i)
+            element.SnackName = model.SnackName;
+            element.Price = model.Price;
+            int maxPCId = source.SnackProducts.Count > 0 ?
+           source.SnackProducts.Max(rec => rec.Id) : 0;
+            // обновляем существуюущие компоненты
+            var compIds = model.SnackProduct.Select(rec =>
+           rec.ProductId).Distinct();
+            var updateProducts = source.SnackProducts.Where(rec => rec.SnackId ==
+           model.Id && compIds.Contains(rec.ProductId));
+            foreach (var updateProduct in updateProducts)
             {
-                if (source.SnackProducts[i].Id > maxPCId)
-                {
-                    maxPCId = source.SnackProducts[i].Id;
-                }
+                updateProduct.Count = model.SnackProduct.FirstOrDefault(rec =>
+               rec.Id == updateProduct.Id).Count;
             }
-
-            for (int i = 0; i < source.SnackProducts.Count; ++i)
+            source.SnackProducts.RemoveAll(rec => rec.SnackId == model.Id &&
+           !compIds.Contains(rec.ProductId));
+            // новые записи
+            var groupProducts = model.SnackProduct
+            .Where(rec => rec.Id == 0)
+           .GroupBy(rec => rec.ProductId)
+           .Select(rec => new
+           {
+               ProductId = rec.Key,
+               Count = rec.Sum(r => r.Count)
+           });
+            foreach (var groupProduct in groupProducts)
             {
-                if (source.SnackProducts[i].SnackId == model.Id)
+                SnackProduct elementPC = source.SnackProducts.FirstOrDefault(rec
+               => rec.SnackId == model.Id && rec.ProductId == groupProduct.ProductId);
+                if (elementPC != null)
                 {
-                    bool flag = true;
-                    for (int j = 0; j < model.SnackProduct.Count; ++j)
-                    {
-                        // если встретили, то изменяем количество
-                        if (source.SnackProducts[i].Id == model.SnackProduct[j].Id)
-                        {
-                            source.SnackProducts[i].Count = model.SnackProduct[j].Count;
-                            flag = false;
-                            break;
-                        }
-                    }
-                    // если не встретили, то удаляем
-                    if (flag)
-                    {
-                        source.SnackProducts.RemoveAt(i--);
-                    }
+                    elementPC.Count += groupProduct.Count;
                 }
-            }
-
-            for (int i = 0; i < model.SnackProduct.Count; ++i)
-            {
-                if (model.SnackProduct[i].Id == 0)
+                else
                 {
-                    for (int j = 0; j < source.SnackProducts.Count; ++j)
+                    source.SnackProducts.Add(new SnackProduct
                     {
-                        if (source.SnackProducts[j].SnackId == model.Id && source.SnackProducts[j].ProductId == model.SnackProduct[i].ProductId)
-                        {
-                            source.SnackProducts[j].Count += model.SnackProduct[i].Count;
-                            model.SnackProduct[i].Id = source.SnackProducts[j].Id;
-                            break;
-                        }
-                    }
-
-                    if (model.SnackProduct[i].Id == 0)
-                    {
-                        source.SnackProducts.Add(new SnackProduct
-                        {
-                            Id = ++maxPCId,
-                            SnackId = model.Id,
-                            ProductId = model.SnackProduct[i].ProductId,
-                            Count = model.SnackProduct[i].Count
-                        });
-                    }
+                        Id = ++maxPCId,
+                        SnackId = model.Id,
+                        ProductId = groupProduct.ProductId,
+                        Count = groupProduct.Count
+                    });
                 }
-            }
+            }           
         }
-
         public void DelElement(int id)
         {
-            // удаяем записи по компонентам при удалении изделия
-            for (int i = 0; i < source.SnackProducts.Count; ++i)
+            Snack element = source.Snacks.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.SnackProducts[i].SnackId == id)
-                {
-                    source.SnackProducts.RemoveAt(i--);
-                }
+                // удаяем записи по компонентам при удалении изделия
+                source.SnackProducts.RemoveAll(rec => rec.SnackId == id);
+                source.Snacks.Remove(element);
             }
-            for (int i = 0; i < source.Snacks.Count; ++i)
+            else
             {
-                if (source.Snacks[i].Id == id)
-                {
-                    source.Snacks.RemoveAt(i);
-                    return;
-                }
+                throw new Exception("Элемент не найден");
             }
-            throw new Exception("Элемент не найден");
         }
 
     }

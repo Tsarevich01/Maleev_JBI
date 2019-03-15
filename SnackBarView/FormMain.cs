@@ -128,5 +128,17 @@ namespace SnackBarView
         {
             LoadData();
         }
+
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStocks>();
+            form.ShowDialog();
+        }
+
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormPutOnStock>();
+            form.ShowDialog();
+        }
     }
 }
