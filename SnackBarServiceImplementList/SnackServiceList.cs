@@ -22,6 +22,7 @@ namespace SnackBarServiceImplementList
             List<SnackViewModel> result = source.Snacks
             .Select(rec => new SnackViewModel
             {
+
                 Id = rec.Id,
                 НазваниеЗакуски = rec.SnackName,
                 Цена = rec.Price,
@@ -40,6 +41,7 @@ namespace SnackBarServiceImplementList
             })
             .ToList();
             
+
             return result;
         }
 
@@ -48,6 +50,7 @@ namespace SnackBarServiceImplementList
             Snack element = source.Snacks.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
+
                 return new SnackViewModel
                 {
                     Id = element.Id,
@@ -66,6 +69,7 @@ namespace SnackBarServiceImplementList
                 })
                .ToList()
                 };
+
             }
             throw new Exception("Элемент не найден");
         }

@@ -1,4 +1,4 @@
-﻿using SnackBarModel;
+using SnackBarModel;
 using SnackBarServiceDAL.BindingModel;
 using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
@@ -31,7 +31,8 @@ namespace SnackBarServiceImplementList
             {
                 Id = maxId + 1,
                 ProductName = model.ProductName
-            });
+            });
+
         }
 
         public void DelElement(int id)
@@ -44,7 +45,8 @@ namespace SnackBarServiceImplementList
             else
             {
                 throw new Exception("Элемент не найден");
-            }
+            }
+
         }
 
         public ProductViewModel GetElement(int id)
@@ -67,7 +69,8 @@ namespace SnackBarServiceImplementList
             {
                 Id = rec.Id,
                 НазваниеПродукта = rec.ProductName
-            }).ToList();
+            }).ToList();
+
 
             return result;
         }

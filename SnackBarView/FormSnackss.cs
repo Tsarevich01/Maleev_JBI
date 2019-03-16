@@ -26,7 +26,9 @@ namespace SnackBarView
             this.service = service;
         }
 
+
         private void FormSnacks_Load(object sender, EventArgs e)
+
         {
             LoadData();
         }
@@ -62,7 +64,9 @@ namespace SnackBarView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
+
                 var form = Container.Resolve<FormSnacks>();
+
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -95,5 +99,6 @@ namespace SnackBarView
         {
             LoadData();
         }
+
     }
 }

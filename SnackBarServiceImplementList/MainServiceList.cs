@@ -1,4 +1,4 @@
-﻿using SnackBarModel;
+using SnackBarModel;
 using SnackBarServiceDAL.BindingModel;
 using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
@@ -132,7 +132,9 @@ namespace SnackBarServiceImplementList
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
             element.Status = OrderStatus.Оплачен;
-        }        public void PutProductOnStock(StockProductBindingModel model)
+        }
+
+        public void PutProductOnStock(StockProductBindingModel model)
         {
             StockProduct element = source.StockProducts.FirstOrDefault(rec =>
            rec.StockId == model.StockId && rec.ProductId == model.ProductId);
@@ -152,6 +154,7 @@ namespace SnackBarServiceImplementList
                     Count = model.Count
                 });
             }
-        }
+        }
+
     }
 }

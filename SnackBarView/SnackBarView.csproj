@@ -115,6 +115,7 @@
     <Compile Include="FormSnackss.Designer.cs">
       <DependentUpon>FormSnackss.cs</DependentUpon>
     </Compile>
+
     <Compile Include="FormStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +128,7 @@
     <Compile Include="FormStocks.Designer.cs">
       <DependentUpon>FormStocks.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormClient.resx">
@@ -159,12 +161,14 @@
     <EmbeddedResource Include="FormSnackss.resx">
       <DependentUpon>FormSnackss.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="FormStock.resx">
       <DependentUpon>FormStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStocks.resx">
       <DependentUpon>FormStocks.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

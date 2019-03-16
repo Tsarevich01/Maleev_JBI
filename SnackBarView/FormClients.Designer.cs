@@ -95,7 +95,7 @@
             this.Controls.Add(this.buttonUpd);
             this.Controls.Add(this.dataGridView);
             this.Name = "FormClients";
-            this.Text = "Клиенты";
+            this.Text = "Заказчики";
             this.Load += new System.EventHandler(this.FormClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
