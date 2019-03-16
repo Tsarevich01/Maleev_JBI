@@ -1,7 +1,10 @@
 ﻿using SnackBarServiceDAL.Interfaces;
+using SnackBarServiceImplementDataBase;
+using SnackBarServiceImplementDataBase.Implementations;
 using SnackBarServiceImplementList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,11 +32,18 @@ namespace SnackBarView
         {
             var currentContainer = new UnityContainer();
 
-            currentContainer.RegisterType<IClientService, ClientServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IProductService, ProductServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISnackService, SnackServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IStockService, StockServiceList>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DbContext, BarDbContext>(new
+HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientService, ClientServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IProductService, ProductServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISnackService, SnackServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStockService, StockServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMainService, MainServiceDB>(new
+           HierarchicalLifetimeManager());
 
             return currentContainer;
         }

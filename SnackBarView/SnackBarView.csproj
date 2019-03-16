@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -200,6 +207,10 @@
     <ProjectReference Include="..\SnackBarServiceDAL\SnackBarServiceDAL.csproj">
       <Project>{3afa65d9-f22c-4bcb-9a94-12ba7b423bca}</Project>
       <Name>SnackBarServiceDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SnackBarServiceImplementDataBase\SnackBarServiceImplementDataBase.csproj">
+      <Project>{fb0864e8-ef12-4ce7-8b18-f4c15ce86c4c}</Project>
+      <Name>SnackBarServiceImplementDataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\SnackBarServiceImplementList\SnackBarServiceImplementList.csproj">
       <Project>{b586597b-caea-48dd-8578-e07915c2f159}</Project>
