@@ -80,7 +80,9 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Name = "FormClient";
-            this.Text = "Заказчик";
+
+            this.Text = "Клиент";
+
             this.Load += new System.EventHandler(this.FormClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -75,6 +75,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(266, 20);
             this.textBoxCount.TabIndex = 14;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // comboBoxProduct
             // 

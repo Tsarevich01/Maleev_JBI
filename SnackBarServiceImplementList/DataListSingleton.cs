@@ -21,6 +21,10 @@ namespace SnackBarServiceImplementList
 
         public List<SnackProduct> SnackProducts { get; set; }
 
+        public List<Stock> Stocks { get; set; }
+
+        public List<StockProduct> StockProducts { get; set; }
+
         private DataListSingleton()
         {
             Clients = new List<Client>();
@@ -28,6 +32,8 @@ namespace SnackBarServiceImplementList
             Orders = new List<Order>();
             Snacks = new List<Snack>();
             SnackProducts = new List<SnackProduct>();
+            Stocks = new List<Stock>();
+            StockProducts = new List<StockProduct>();
         }
 
         public static DataListSingleton GetInstance()

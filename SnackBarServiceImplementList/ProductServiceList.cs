@@ -1,4 +1,4 @@
-﻿using SnackBarModel;
+using SnackBarModel;
 using SnackBarServiceDAL.BindingModel;
 using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
@@ -21,89 +21,73 @@ namespace SnackBarServiceImplementList
 
         public void AddElement(ProductBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Products.Count; ++i)
+            Product element = source.Products.FirstOrDefault(rec => rec.ProductName == model.ProductName);
+            if (element != null)
             {
-                if (source.Products[i].Id > maxId)
-                {
-                    maxId = source.Products[i].Id;
-                }
-                if (source.Products[i].ProductName == model.ProductName)
-                {
-                    throw new Exception("Уже есть такой ингредиент");
-                }
+                throw new Exception("Уже есть компонент с таким названием");
             }
+            int maxId = source.Products.Count > 0 ? source.Products.Max(rec => rec.Id) : 0;
             source.Products.Add(new Product
             {
                 Id = maxId + 1,
                 ProductName = model.ProductName
             });
+
         }
 
         public void DelElement(int id)
         {
-            for (int i = 0; i < source.Products.Count; ++i)
+            Product element = source.Products.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.Products[i].Id == id)
-                {
-                    source.Products.RemoveAt(i);
-                    return;
-                }
+                source.Products.Remove(element);
             }
-            throw new Exception("Элемент не найден");
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
+
         }
 
         public ProductViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Products.Count; ++i)
+            Product element = source.Products.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.Products[i].Id == id)
+                return new ProductViewModel
                 {
-                    return new ProductViewModel
-                    {
-                        Id = source.Products[i].Id,
-                        НазваниеПродукта = source.Products[i].ProductName
-                    };
-                }
+                    Id = element.Id,
+                    НазваниеПродукта = element.ProductName
+                };
             }
             throw new Exception("Элемент не найден");
         }
 
         public List<ProductViewModel> GetList()
         {
-            List<ProductViewModel> result = new List<ProductViewModel>();
-            for (int i = 0; i < source.Products.Count; ++i)
+            List<ProductViewModel> result = source.Products.Select(rec => new ProductViewModel
             {
-                result.Add(new ProductViewModel
-                {
-                    Id = source.Products[i].Id,
-                    НазваниеПродукта = source.Products[i].ProductName
-                });
-            }
+                Id = rec.Id,
+                НазваниеПродукта = rec.ProductName
+            }).ToList();
+
 
             return result;
         }
 
         public void UpdElement(ProductBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Products.Count; ++i)
+            Product element = source.Products.FirstOrDefault(rec => rec.ProductName == model.ProductName && rec.Id != model.Id);
+            if (element != null)
             {
-                if (source.Products[i].Id == model.Id)
-                {
-                    index = i;
-                }
-                if (source.Products[i].ProductName == model.ProductName &&
-                source.Products[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть блюдо с таким названием");
-                }
+                throw new Exception("Уже есть компонент с таким названием");
             }
-            if (index == -1)
+            element = source.Products.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Products[index].ProductName = model.ProductName;
+            element.ProductName = model.ProductName;
         }
     }
 }

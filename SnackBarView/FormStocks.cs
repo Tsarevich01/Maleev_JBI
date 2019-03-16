@@ -13,22 +13,20 @@ using Unity;
 
 namespace SnackBarView
 {
-    public partial class FormSnackss : Form
+    public partial class FormStocks : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ISnackService service;
+        private readonly IStockService service;
 
-        public FormSnackss(ISnackService service)
+        public FormStocks(IStockService service)
         {
             InitializeComponent();
             this.service = service;
         }
 
-
-        private void FormSnacks_Load(object sender, EventArgs e)
-
+        private void FormStocks_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -37,7 +35,7 @@ namespace SnackBarView
         {
             try
             {
-                List<SnackViewModel> list = service.GetList();
+                List<StockViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -53,7 +51,7 @@ namespace SnackBarView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSnacks>();
+            var form = Container.Resolve<FormStock>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -64,9 +62,7 @@ namespace SnackBarView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-
-                var form = Container.Resolve<FormSnacks>();
-
+                var form = Container.Resolve<FormStock>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -99,6 +95,5 @@ namespace SnackBarView
         {
             LoadData();
         }
-
     }
 }
