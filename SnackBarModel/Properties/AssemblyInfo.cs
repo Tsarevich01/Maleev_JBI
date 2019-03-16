@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Maleev_SnackBar")]
+[assembly: AssemblyTitle("SnackBarModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Maleev_SnackBar")]
+[assembly: AssemblyProduct("SnackBarModel")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("ca300dea-1fb3-4c0e-926e-9adde853466c")]
+[assembly: Guid("760412db-ec85-4cd2-8516-cf50d2a095a6")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
