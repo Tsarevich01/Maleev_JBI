@@ -24,8 +24,8 @@ namespace SnackBarServiceDAL.ViewModel
 
         public string Статус { get; set; }
 
-        public string ДатаСоздания { get; set; }
+        public string ДатаЗаказа { get; set; }
 
-        public string ДатаЗавершения { get; set; }
+        public string ДатаВыполнения { get; set; }
     }
 }
