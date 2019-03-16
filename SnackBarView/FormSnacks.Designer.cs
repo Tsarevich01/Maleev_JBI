@@ -171,7 +171,7 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
             this.Name = "FormSnacks";
-            this.Text = "FormSnacks";
+            this.Text = "Закуски";
             this.Load += new System.EventHandler(this.FormSnacks_Load);
             this.groupBoxSostav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

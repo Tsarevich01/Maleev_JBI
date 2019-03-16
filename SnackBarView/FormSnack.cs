@@ -37,7 +37,7 @@ namespace SnackBarView
                 List<ProductViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    comboBoxProduct.DisplayMember = "ProductName";
+                    comboBoxProduct.DisplayMember = "НазваниеПродукта";
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.DataSource = list;
                     comboBoxProduct.SelectedItem = null;
@@ -51,7 +51,7 @@ namespace SnackBarView
             {
                 comboBoxProduct.Enabled = false;
                 comboBoxProduct.SelectedValue = model.ProductId;
-                textBoxCount.Text = model.Count.ToString();
+                textBoxCount.Text = model.Количество.ToString();
             }
         }
 
@@ -75,13 +75,13 @@ namespace SnackBarView
                     model = new SnackProductViewModel
                     {
                         ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
-                        ProductName = comboBoxProduct.Text,
-                        Count = Convert.ToInt32(textBoxCount.Text)
+                        НазваниеПродукта = comboBoxProduct.Text,
+                        Количество = Convert.ToInt32(textBoxCount.Text)
                     };
                 }
                 else
                 {
-                    model.Count = Convert.ToInt32(textBoxCount.Text);
+                    model.Количество = Convert.ToInt32(textBoxCount.Text);
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

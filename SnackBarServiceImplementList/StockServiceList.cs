@@ -23,7 +23,7 @@ namespace SnackBarServiceImplementList
             .Select(rec => new StockViewModel
             {
                 Id = rec.Id,
-                StockName = rec.StockName,
+                НазваниеСклада = rec.StockName,
                 StockProducts = source.StockProducts
             .Where(recPC => recPC.StockId == rec.Id)
            .Select(recPC => new StockProductViewModel
@@ -31,10 +31,10 @@ namespace SnackBarServiceImplementList
                Id = recPC.Id,
                StockId = recPC.StockId,
                ProductId = recPC.ProductId,
-               ProductName = source.Products
+               НазваниеПродукта = source.Products
             .FirstOrDefault(recC => recC.Id ==
            recPC.ProductId)?.ProductName,
-               Count = recPC.Count
+               Количество = recPC.Count
            })
            .ToList()
             })
@@ -49,7 +49,7 @@ namespace SnackBarServiceImplementList
                 return new StockViewModel
                 {
                     Id = element.Id,
-                    StockName = element.StockName,
+                    НазваниеСклада = element.StockName,
                     StockProducts = source.StockProducts
                 .Where(recPC => recPC.StockId == element.Id)
                .Select(recPC => new StockProductViewModel
@@ -57,10 +57,10 @@ namespace SnackBarServiceImplementList
                    Id = recPC.Id,
                    StockId = recPC.StockId,
                    ProductId = recPC.ProductId,
-                   ProductName = source.Products
+                   НазваниеПродукта = source.Products
                 .FirstOrDefault(recC => recC.Id ==
                recPC.ProductId)?.ProductName,
-                   Count = recPC.Count
+                   Количество = recPC.Count
                })
                .ToList()
                 };

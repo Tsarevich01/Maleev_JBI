@@ -55,7 +55,7 @@ namespace SnackBarServiceImplementList
                 return new ClientViewModel
                 {
                     Id = element.Id,
-                    ClientFIO = element.ClientFIO
+                    ФИОЗаказчика = element.ClientFIO
                 };
             }
             throw new Exception("Элемент не найден");
@@ -66,7 +66,7 @@ namespace SnackBarServiceImplementList
             List<ClientViewModel> result = source.Clients.Select(rec => new ClientViewModel
             {
                 Id = rec.Id,
-                ClientFIO = rec.ClientFIO
+                ФИОЗаказчика = rec.ClientFIO
             }).ToList();
             return result;
 

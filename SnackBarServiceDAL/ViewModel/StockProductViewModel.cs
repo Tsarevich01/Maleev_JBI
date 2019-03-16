@@ -9,8 +9,8 @@ namespace SnackBarServiceDAL.ViewModel
         public int StockId { get; set; }
         public int ProductId { get; set; }
         [DisplayName("Название компонента")]
-        public string ProductName { get; set; }
+        public string НазваниеПродукта { get; set; }
         [DisplayName("Количество")]
-        public int Count { get; set; }
+        public int Количество { get; set; }
     }
 }

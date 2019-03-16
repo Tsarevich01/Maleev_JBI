@@ -35,7 +35,7 @@ namespace SnackBarView
                     StockViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                     textBoxName.Text = view.StockName;
+                     textBoxName.Text = view.НазваниеСклада;
                         dataGridView.DataSource = view.StockProducts;
                         dataGridView.Columns[0].Visible = false;
                         dataGridView.Columns[1].Visible = false;

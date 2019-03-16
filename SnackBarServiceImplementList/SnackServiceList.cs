@@ -23,8 +23,8 @@ namespace SnackBarServiceImplementList
             .Select(rec => new SnackViewModel
             {
                 Id = rec.Id,
-                SnackName = rec.SnackName,
-                Price = rec.Price,
+                НазваниеЗакуски = rec.SnackName,
+                Цена = rec.Price,
                 SnackProducts = source.SnackProducts
             .Where(recPC => recPC.SnackId == rec.Id)
            .Select(recPC => new SnackProductViewModel
@@ -32,9 +32,9 @@ namespace SnackBarServiceImplementList
                Id = recPC.Id,
                SnackId = recPC.SnackId,
                ProductId = recPC.ProductId,
-               ProductName = source.Products.FirstOrDefault(recC =>
+               НазваниеПродукта = source.Products.FirstOrDefault(recC =>
                  recC.Id == recPC.ProductId)?.ProductName,
-               Count = recPC.Count
+               Количество = recPC.Count
            })
            .ToList()
             })
@@ -51,8 +51,8 @@ namespace SnackBarServiceImplementList
                 return new SnackViewModel
                 {
                     Id = element.Id,
-                    SnackName = element.SnackName,
-                    Price = element.Price,
+                    НазваниеЗакуски = element.SnackName,
+                    Цена = element.Price,
                     SnackProducts = source.SnackProducts
                 .Where(recPC => recPC.SnackId == element.Id)
                 .Select(recPC => new SnackProductViewModel
@@ -60,9 +60,9 @@ namespace SnackBarServiceImplementList
                     Id = recPC.Id,
                     SnackId = recPC.SnackId,
                     ProductId = recPC.ProductId,
-                    ProductName = source.Products.FirstOrDefault(recC =>
+                    НазваниеПродукта = source.Products.FirstOrDefault(recC =>
      recC.Id == recPC.ProductId)?.ProductName,
-                    Count = recPC.Count
+                    Количество = recPC.Count
                 })
                .ToList()
                 };

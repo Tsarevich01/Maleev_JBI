@@ -36,7 +36,7 @@ namespace SnackBarView
                 List<ProductViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxProduct.DisplayMember = "ProductName";
+                    comboBoxProduct.DisplayMember = "НазваниеПродукта";
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.DataSource = listC;
                     comboBoxProduct.SelectedItem = null;
@@ -44,7 +44,7 @@ namespace SnackBarView
                 List<StockViewModel> listS = serviceS.GetList();
                 if (listS != null)
                 {
-                    comboBoxStock.DisplayMember = "StockName";
+                    comboBoxStock.DisplayMember = "НазваниеСклада";
                     comboBoxStock.ValueMember = "Id";
                     comboBoxStock.DataSource = listS;
                     comboBoxStock.SelectedItem = null;

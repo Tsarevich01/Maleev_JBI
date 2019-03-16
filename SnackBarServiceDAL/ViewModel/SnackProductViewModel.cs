@@ -8,7 +8,7 @@ namespace SnackBarServiceDAL.ViewModel
 {
     public class SnackProductViewModel
     {
-        public string ProductName { get; set; }
+        public string НазваниеПродукта { get; set; }
 
         public int Id { get; set; }
 
@@ -16,6 +16,6 @@ namespace SnackBarServiceDAL.ViewModel
 
         public int ProductId { get; set; }
 
-        public int Count { get; set; }
+        public int Количество { get; set; }
     }
 }

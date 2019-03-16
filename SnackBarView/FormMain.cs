@@ -62,7 +62,7 @@ namespace SnackBarView
 
         private void закускиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSnacks>();
+            var form = Container.Resolve<FormSnackss>();
             form.ShowDialog();
         }
 

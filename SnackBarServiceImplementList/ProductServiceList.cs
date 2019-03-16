@@ -55,7 +55,7 @@ namespace SnackBarServiceImplementList
                 return new ProductViewModel
                 {
                     Id = element.Id,
-                    ProductName = element.ProductName
+                    НазваниеПродукта = element.ProductName
                 };
             }
             throw new Exception("Элемент не найден");
@@ -66,7 +66,7 @@ namespace SnackBarServiceImplementList
             List<ProductViewModel> result = source.Products.Select(rec => new ProductViewModel
             {
                 Id = rec.Id,
-                ProductName = rec.ProductName
+                НазваниеПродукта = rec.ProductName
             }).ToList();
 
             return result;

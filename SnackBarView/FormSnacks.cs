@@ -42,8 +42,8 @@ namespace SnackBarView
                     SnackViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxName.Text = view.SnackName;
-                        textBoxPrice.Text = view.Price.ToString();
+                        textBoxName.Text = view.НазваниеЗакуски;
+                        textBoxPrice.Text = view.Цена.ToString();
                         jbiSostavs = view.SnackProducts;
                         LoadData();
                     }
@@ -161,7 +161,7 @@ namespace SnackBarView
                         Id = jbiSostavs[i].Id,
                         SnackId = jbiSostavs[i].SnackId,
                         ProductId = jbiSostavs[i].ProductId,
-                        Count = jbiSostavs[i].Count
+                        Count = jbiSostavs[i].Количество
                     });
                 }
                 if (id.HasValue)

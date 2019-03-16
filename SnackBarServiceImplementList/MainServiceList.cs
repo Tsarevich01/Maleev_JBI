@@ -27,14 +27,14 @@ namespace SnackBarServiceImplementList
                 Id = rec.Id,
                 ClientId = rec.ClientId,
                 SnackId = rec.SnackId,
-                DateCreate = rec.DateCreate.ToLongDateString(),
-                DateImplement = rec.DateImplement?.ToLongDateString(),
-                Status = rec.Status.ToString(),
-                Count = rec.Count,
-                Sum = rec.Sum,
-                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id ==
+                ДатаСоздания = rec.DateCreate.ToLongDateString(),
+                ДатаЗавершения = rec.DateImplement?.ToLongDateString(),
+                Статус = rec.Status.ToString(),
+                Количество = rec.Count,
+                Сумма = rec.Sum,
+                ФИОЗаказчика = source.Clients.FirstOrDefault(recC => recC.Id ==
      rec.ClientId)?.ClientFIO,
-                SnackName = source.Products.FirstOrDefault(recP => recP.Id ==
+                НазваниеЗакуски = source.Products.FirstOrDefault(recP => recP.Id ==
     rec.SnackId)?.ProductName,
             })
             .ToList();

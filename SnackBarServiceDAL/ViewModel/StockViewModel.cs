@@ -11,7 +11,7 @@ namespace SnackBarServiceDAL.ViewModel
     {
         public int Id { get; set; }
         [DisplayName("Название склада")]
-        public string StockName { get; set; }
+        public string НазваниеСклада { get; set; }
         public List<StockProductViewModel> StockProducts { get; set; }
     }
 }

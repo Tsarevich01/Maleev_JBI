@@ -12,20 +12,20 @@ namespace SnackBarServiceDAL.ViewModel
 
         public int ClientId { get; set; }
 
-        public string ClientFIO { get; set; }
+        public string ФИОЗаказчика { get; set; }
 
         public int SnackId { get; set; }
 
-        public string SnackName { get; set; }
+        public string НазваниеЗакуски { get; set; }
 
-        public int Count { get; set; }
+        public int Количество { get; set; }
 
-        public decimal Sum { get; set; }
+        public decimal Сумма { get; set; }
 
-        public string Status { get; set; }
+        public string Статус { get; set; }
 
-        public string DateCreate { get; set; }
+        public string ДатаСоздания { get; set; }
 
-        public string DateImplement { get; set; }
+        public string ДатаЗавершения { get; set; }
     }
 }

@@ -75,6 +75,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(266, 20);
             this.textBoxCount.TabIndex = 14;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // comboBoxProduct
             // 
@@ -145,7 +146,7 @@
             this.Controls.Add(this.comboBoxClient);
             this.Controls.Add(this.label1);
             this.Name = "FormCreateOrder";
-            this.Text = "FormCreateOrder";
+            this.Text = "Оформление заказа";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
