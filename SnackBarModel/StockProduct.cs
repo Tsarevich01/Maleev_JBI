@@ -12,5 +12,7 @@ namespace SnackBarModel
         public int StockId { get; set; }
         public int Count { get; set; }
         public int ProductId { get; set; }
+        public virtual Stock Stock { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
