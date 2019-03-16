@@ -101,7 +101,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxProduct);
             this.Name = "FormSnack";
-            this.Text = "FormSnack";
+            this.Text = "Закуска";
             this.Load += new System.EventHandler(this.FormSnackProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

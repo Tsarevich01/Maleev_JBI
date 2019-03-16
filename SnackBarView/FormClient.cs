@@ -40,7 +40,7 @@ namespace SnackBarView
                     ClientViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxFIO.Text = view.ClientFIO;
+                        textBoxFIO.Text = view.ФИОЗаказчика;
                     }
                 }
                 catch (Exception ex)

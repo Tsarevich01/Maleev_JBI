@@ -10,6 +10,6 @@ namespace SnackBarServiceDAL.ViewModel
     {
         public int Id { get; set; }
 
-        public string ClientFIO { get; set; }
+        public string ФИОЗаказчика { get; set; }
     }
 }

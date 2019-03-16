@@ -69,7 +69,7 @@ namespace SnackBarView
                     int count = Convert.ToInt32(textBoxCount.Text);
                     int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
                     SnackViewModel product = serviceS.GetElement(id);
-                    textBoxSum.Text = (count * product.Price).ToString();
+                    textBoxSum.Text = (count * product.Цена).ToString();
                 }
                 catch (Exception ex)
                 {

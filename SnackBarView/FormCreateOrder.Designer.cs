@@ -145,7 +145,7 @@
             this.Controls.Add(this.comboBoxClient);
             this.Controls.Add(this.label1);
             this.Name = "FormCreateOrder";
-            this.Text = "FormCreateOrder";
+            this.Text = "Оформление заказа";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

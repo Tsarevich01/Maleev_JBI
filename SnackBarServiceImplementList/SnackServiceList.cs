@@ -42,8 +42,8 @@ namespace SnackBarServiceImplementList
                             Id = source.SnackProducts[j].Id,
                             SnackId = source.SnackProducts[j].SnackId,
                             ProductId = source.SnackProducts[j].ProductId,
-                            ProductName = productName,
-                            Count = source.SnackProducts[j].Count
+                            НазваниеПродукта = productName,
+                            Количество = source.SnackProducts[j].Count
                         });
 
                     }
@@ -52,8 +52,8 @@ namespace SnackBarServiceImplementList
                 result.Add(new SnackViewModel
                 {
                     Id = source.Snacks[i].Id,
-                    SnackName = source.Snacks[i].SnackName,
-                    Price = source.Snacks[i].Price,
+                    НазваниеЗакуски = source.Snacks[i].SnackName,
+                    Цена = source.Snacks[i].Price,
                     SnackProducts = snackProducts
                 });
             }
@@ -84,8 +84,8 @@ namespace SnackBarServiceImplementList
                             Id = source.SnackProducts[j].Id,
                             SnackId = source.SnackProducts[j].SnackId,
                             ProductId = source.SnackProducts[j].ProductId,
-                            ProductName = SostavName,
-                            Count = source.SnackProducts[j].Count
+                            НазваниеПродукта = SostavName,
+                            Количество = source.SnackProducts[j].Count
                         });
                     }
                 }
@@ -94,8 +94,8 @@ namespace SnackBarServiceImplementList
                     return new SnackViewModel
                     {
                         Id = source.Snacks[i].Id,
-                        SnackName = source.Snacks[i].SnackName,
-                        Price = source.Snacks[i].Price,
+                        НазваниеЗакуски = source.Snacks[i].SnackName,
+                        Цена = source.Snacks[i].Price,
                         SnackProducts = setDishes
                     };
                 }

@@ -62,7 +62,7 @@ namespace SnackBarServiceImplementList
                     return new ProductViewModel
                     {
                         Id = source.Products[i].Id,
-                        ProductName = source.Products[i].ProductName
+                        НазваниеПродукта = source.Products[i].ProductName
                     };
                 }
             }
@@ -77,7 +77,7 @@ namespace SnackBarServiceImplementList
                 result.Add(new ProductViewModel
                 {
                     Id = source.Products[i].Id,
-                    ProductName = source.Products[i].ProductName
+                    НазваниеПродукта = source.Products[i].ProductName
                 });
             }
 

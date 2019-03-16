@@ -1,6 +1,6 @@
 ﻿namespace SnackBarView
 {
-    partial class FormClients
+    partial class FormSnackss
     {
         /// <summary>
         /// Required designer variable.
@@ -38,40 +38,40 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(463, 12);
+            this.buttonAdd.Location = new System.Drawing.Point(467, 15);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(143, 76);
-            this.buttonAdd.TabIndex = 3;
+            this.buttonAdd.TabIndex = 8;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(462, 258);
+            this.buttonRef.Location = new System.Drawing.Point(466, 261);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(143, 76);
-            this.buttonRef.TabIndex = 4;
+            this.buttonRef.TabIndex = 9;
             this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
             this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
             // 
             // buttonDel
             // 
-            this.buttonDel.Location = new System.Drawing.Point(462, 176);
+            this.buttonDel.Location = new System.Drawing.Point(466, 179);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(143, 76);
-            this.buttonDel.TabIndex = 5;
+            this.buttonDel.TabIndex = 10;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
             this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonUpd
             // 
-            this.buttonUpd.Location = new System.Drawing.Point(463, 94);
+            this.buttonUpd.Location = new System.Drawing.Point(467, 97);
             this.buttonUpd.Name = "buttonUpd";
             this.buttonUpd.Size = new System.Drawing.Size(143, 76);
-            this.buttonUpd.TabIndex = 6;
+            this.buttonUpd.TabIndex = 11;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
             this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
@@ -79,23 +79,23 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(1, 1);
+            this.dataGridView.Location = new System.Drawing.Point(5, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(455, 485);
-            this.dataGridView.TabIndex = 2;
+            this.dataGridView.TabIndex = 7;
             // 
-            // FormClients
+            // FormSnackss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 488);
+            this.ClientSize = new System.Drawing.Size(617, 495);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonUpd);
             this.Controls.Add(this.dataGridView);
-            this.Name = "FormClients";
-            this.Text = "Заказчики";
+            this.Name = "FormSnackss";
+            this.Text = "Сами закуски";
             this.Load += new System.EventHandler(this.FormClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

@@ -46,14 +46,14 @@ namespace SnackBarServiceImplementList
                 {
                     Id = source.Orders[i].Id,
                     ClientId = source.Orders[i].ClientId,
-                    ClientFIO = clientFIO,
+                    ФИОЗаказчика = clientFIO,
                     SnackId = source.Orders[i].SnackId,
-                    SnackName = snackName,
-                    Count = source.Orders[i].Count,
-                    Sum = source.Orders[i].Sum,
-                    DateCreate = source.Orders[i].DateCreate.ToLongDateString(),
-                    DateImplement = source.Orders[i].DateImplement?.ToLongDateString(),
-                    Status = source.Orders[i].Status.ToString()
+                    НазваниеЗакуски = snackName,
+                    Количество = source.Orders[i].Count,
+                    Сумма = source.Orders[i].Sum,
+                    ДатаЗаказа = source.Orders[i].DateCreate.ToLongDateString(),
+                    ДатаВыполнения = source.Orders[i].DateImplement?.ToLongDateString(),
+                    Статус = source.Orders[i].Status.ToString()
                 });
             }
             return result;

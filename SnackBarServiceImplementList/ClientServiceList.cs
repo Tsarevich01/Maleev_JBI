@@ -62,7 +62,7 @@ namespace SnackBarServiceImplementList
                     return new ClientViewModel
                     {
                         Id = source.Clients[i].Id,
-                        ClientFIO = source.Clients[i].ClientFIO
+                        ФИОЗаказчика = source.Clients[i].ClientFIO
                     };
                 }
             }
@@ -77,7 +77,7 @@ namespace SnackBarServiceImplementList
                 result.Add(new ClientViewModel
                 {
                     Id = source.Clients[i].Id,
-                    ClientFIO = source.Clients[i].ClientFIO
+                    ФИОЗаказчика = source.Clients[i].ClientFIO
                 });
             }
 

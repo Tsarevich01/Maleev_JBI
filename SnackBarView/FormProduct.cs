@@ -40,7 +40,7 @@ namespace SnackBarView
                     ProductViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxProductName.Text = view.ProductName;
+                        textBoxProductName.Text = view.НазваниеПродукта;
                     }
                 }
                 catch (Exception ex)
