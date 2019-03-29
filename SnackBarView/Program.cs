@@ -33,7 +33,7 @@ namespace SnackBarView
             var currentContainer = new UnityContainer();
 
             currentContainer.RegisterType<DbContext, BarDbContext>(new
-HierarchicalLifetimeManager());
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IClientService, ClientServiceDB>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IProductService, ProductServiceDB>(new
@@ -43,7 +43,8 @@ HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStockService, StockServiceDB>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceDB>(new
-           HierarchicalLifetimeManager());
+           HierarchicalLifetimeManager());
+
 
             return currentContainer;
         }
