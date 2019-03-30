@@ -1,4 +1,4 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using Microsoft.Reporting.WinForms;
 using SnackBarServiceDAL.BindingModel;
 using SnackBarServiceDAL.Interfaces;
 using System;
@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
-
 
 namespace SnackBarView
 {

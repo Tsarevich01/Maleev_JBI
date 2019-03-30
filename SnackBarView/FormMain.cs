@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
+using Unity;
 
 namespace SnackBarView
 {
@@ -20,6 +20,7 @@ namespace SnackBarView
         public new IUnityContainer Container { get; set; }
 
         private readonly IMainService service;
+        private readonly IReportService reportService;
 
         public FormMain(IMainService service)
         {
@@ -151,7 +152,7 @@ namespace SnackBarView
             {
                 try
                 {
-                    reportService.SaveProductPrice(new ReportBindingModel
+                    reportService.SaveSnackPrice(new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });

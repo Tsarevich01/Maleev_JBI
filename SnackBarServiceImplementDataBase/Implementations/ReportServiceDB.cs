@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.IO;
 using System.Linq;
+using SnackBarServiceImplementDataBase.Properties;
 
 
 namespace SnackBarServiceImplementDataBase.Implementations
