@@ -20,7 +20,7 @@ namespace SnackBarView
         public new IUnityContainer Container { get; set; }
 
         private readonly IMainService service;
-        private readonly IReportService reportService;
+        private IReportService reportService;
 
         public FormMain(IMainService service)
         {

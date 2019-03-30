@@ -83,6 +83,7 @@
             this.Controls.Add(this.buttonSave);
             this.Name = "FormStocksLoad";
             this.Text = "Загрузка складов";
+            this.Load += new System.EventHandler(this.FormStocksLoad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

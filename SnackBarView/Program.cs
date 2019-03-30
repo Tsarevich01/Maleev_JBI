@@ -42,9 +42,11 @@ namespace SnackBarView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStockService, StockServiceDB>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportService, ReportServiceDB>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceDB>(new
            HierarchicalLifetimeManager());
-
+            
 
             return currentContainer;
         }
