@@ -25,7 +25,8 @@ namespace SnackBarView
         {
             InitializeComponent();
             this.service = service;
-        }
+        }
+
 
         private void FormClientOrders_Load(object sender, EventArgs e)
         {
@@ -96,7 +97,8 @@ namespace SnackBarView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
-            }
+            }
+
         }
     }
 }
