@@ -22,7 +22,7 @@ namespace SnackBarView
         private readonly IMainService service;
         private readonly IReportService reportService;
 
-        public FormMain(IMainService service)
+        public FormMain(IMainService service, IReportService reportService)
         {
             InitializeComponent();
             this.service = service;
