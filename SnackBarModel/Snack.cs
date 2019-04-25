@@ -11,9 +11,13 @@ namespace SnackBarModel
         [Required]
         public string SnackName { get; set; }
 
+        [Required]
         public decimal Price { get; set; }
 
         [ForeignKey("SnackId")]
         public virtual List<Order> Orders { get; set; }
+
+        [ForeignKey("SnackId")]
+        public virtual List<SnackProduct> SnackProduct { get; set; }
     }
 }

@@ -55,13 +55,12 @@ namespace SnackBarServiceImplementDataBase.Implementations
                 paragraphFormat.SpaceBefore = 0;
                 //добавляем абзац в документ
                 range.InsertParagraphAfter();
-                var products = context.Snacks.ToList();
+                var snacks = context.Snacks.ToList();
                 
             //создаем таблицу
- var paragraphTable = document.Paragraphs.Add(Type.Missing);
+                var paragraphTable = document.Paragraphs.Add(Type.Missing);
                 var rangeTable = paragraphTable.Range;
-                var table = document.Tables.Add(rangeTable, products.Count, 2, ref
-               missing, ref missing);
+                var table = document.Tables.Add(rangeTable, snacks.Count, 2, ref missing, ref missing);
                 font = table.Range.Font;
                 font.Size = 14;
                 font.Name = "Times New Roman";
@@ -69,10 +68,10 @@ namespace SnackBarServiceImplementDataBase.Implementations
                 paragraphTableFormat.LineSpacingRule = WdLineSpacing.wdLineSpaceSingle;
                 paragraphTableFormat.SpaceAfter = 0;
                 paragraphTableFormat.SpaceBefore = 0;
-                for (int i = 0; i < products.Count; ++i)
+                for (int i = 0; i < snacks.Count; ++i)
                 {
-                    table.Cell(i + 1, 1).Range.Text = products[i].SnackName;
-                    table.Cell(i + 1, 2).Range.Text = products[i].Orders.ToString();
+                    table.Cell(i + 1, 1).Range.Text = snacks[i].SnackName;
+                    table.Cell(i + 1, 2).Range.Text = snacks[i].Price.ToString();
                 }
                 //задаем границы таблицы
                 table.Borders.InsideLineStyle = WdLineStyle.wdLineStyleInset;
@@ -122,8 +121,7 @@ namespace SnackBarServiceImplementDataBase.Implementations
             {
                 StockName = stock.StockName,
                 TotalCount = stockCompList.Sum(r => r.Count),
-                Products = stockCompList.Select(r => new Tuple<string,
-    int>(r.Product.ProductName, r.Count))
+                Products = stockCompList.Select(r => new Tuple<string, int>(r.Product.ProductName, r.Count))
             })
             .ToList();
         }

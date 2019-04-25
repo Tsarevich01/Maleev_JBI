@@ -25,5 +25,6 @@ namespace SnackBarServiceImplementDataBase
         public virtual DbSet<SnackProduct> SnackProducts { get; set; }
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<StockProduct> StockProducts { get; set; }
+        
     }
 }
