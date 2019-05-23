@@ -1,40 +1,26 @@
-﻿using SnackBarServiceDAL.Interfaces;
-using SnackBarServiceDAL.ViewModel;
+﻿using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormSnack : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public SnackProductViewModel Model { set { model = value; } get { return model; } }
-
-        private readonly IProductService service;
 
         private SnackProductViewModel model;
 
-        public FormSnack(IProductService service)
+        public FormSnack()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormSnackProduct_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ProductViewModel> list = service.GetList();
+                List<ProductViewModel> list = APIClient.GetRequest<List<ProductViewModel>>("api/Product/GetList");
                 if (list != null)
                 {
                     comboBoxProduct.DisplayMember = "НазваниеПродукта";

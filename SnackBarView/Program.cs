@@ -1,15 +1,5 @@
-﻿using SnackBarServiceDAL.Interfaces;
-using SnackBarServiceImplementDataBase;
-using SnackBarServiceImplementDataBase.Implementations;
-using SnackBarServiceImplementList;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using Unity;
-using Unity.Lifetime;
 
 namespace SnackBarView
 {
@@ -21,34 +11,11 @@ namespace SnackBarView
         [STAThread]
         static void Main()
         {
-            var container = BuildUnityContainer();
-
+            APIClient.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(container.Resolve<FormMain>());
+            Application.Run(new FormMain());
         }
-
-        public static IUnityContainer BuildUnityContainer()
-        {
-            var currentContainer = new UnityContainer();
-
-            currentContainer.RegisterType<DbContext, BarDbContext>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IClientService, ClientServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IProductService, ProductServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISnackService, SnackServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IStockService, StockServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IReportService, ReportServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceDB>(new
-           HierarchicalLifetimeManager());
-            
-
-            return currentContainer;
-        }
+        
     }
 }

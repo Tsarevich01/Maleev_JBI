@@ -10,25 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
+
 
 namespace SnackBarView
 {
     public partial class FormClient : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
-        private readonly IClientService service;
 
         private int? id;
 
-        public FormClient(IClientService service)
+        public FormClient()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormClient_Load(object sender, EventArgs e)
@@ -37,11 +31,8 @@ namespace SnackBarView
             {
                 try
                 {
-                    ClientViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.ФИОЗаказчика;
-                    }
+                    ClientViewModel client = APIClient.GetRequest<ClientViewModel>("api/Client/Get/" + id.Value);
+                    textBoxFIO.Text = client.ФИОЗаказчика;
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +52,7 @@ namespace SnackBarView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ClientBindingModel
+                    APIClient.PostRequest<ClientBindingModel, bool>("api/Client/UpdElement", new ClientBindingModel
                     {
                         Id = id.Value,
                         ClientFIO = textBoxFIO.Text
@@ -69,10 +60,10 @@ namespace SnackBarView
                 }
                 else
                 {
-                    service.AddElement(new ClientBindingModel
+                    APIClient.PostRequest<ClientBindingModel,bool>("api/Client/AddElement", new ClientBindingModel
                     {
                         ClientFIO = textBoxFIO.Text
-                    });
+                    });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

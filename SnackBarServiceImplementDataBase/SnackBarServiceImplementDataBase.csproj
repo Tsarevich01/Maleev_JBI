@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201904242357552_SecondMig.Designer.cs">
       <DependentUpon>201904242357552_SecondMig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904250232319_formig.cs" />
+    <Compile Include="Migrations\201904250232319_formig.Designer.cs">
+      <DependentUpon>201904250232319_formig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -110,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904242357552_SecondMig.resx">
       <DependentUpon>201904242357552_SecondMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904250232319_formig.resx">
+      <DependentUpon>201904250232319_formig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
