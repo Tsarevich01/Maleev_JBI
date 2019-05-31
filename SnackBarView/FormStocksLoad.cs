@@ -17,7 +17,7 @@ namespace SnackBarView
         {
             try
             {
-                var dict = APIClient.GetRequest<List<StocksLoadViewModel>>("api/Report/GetStocksLoad");
+                var dict = APIClient.GetRequest<List<StocksLoadViewModel>>("api/Stock/GetStocksLoad");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();

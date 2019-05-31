@@ -32,7 +32,8 @@ namespace SnackBarView
                 try
                 {
                     ClientViewModel client = APIClient.GetRequest<ClientViewModel>("api/Client/Get/" + id.Value);
-                    textBoxFIO.Text = client.ФИОЗаказчика;
+                    textBoxFIO.Text = client.ФИОЗаказчика;
+
                 }
                 catch (Exception ex)
                 {
@@ -63,7 +64,8 @@ namespace SnackBarView
                     APIClient.PostRequest<ClientBindingModel,bool>("api/Client/AddElement", new ClientBindingModel
                     {
                         ClientFIO = textBoxFIO.Text
-                    });
+                    });
+
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

@@ -52,7 +52,8 @@ namespace SnackBarView
                 var form = new FormClient
                 {
                     Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value)
-                };
+                };
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
@@ -69,7 +70,8 @@ namespace SnackBarView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        APIClient.PostRequest<ClientBindingModel, bool>("api/Client/DelElement", new ClientBindingModel { Id = id });
+                        APIClient.PostRequest<ClientBindingModel, bool>("api/Client/DelElement", new ClientBindingModel { Id = id });
+
                     }
                     catch (Exception ex)
                     {
