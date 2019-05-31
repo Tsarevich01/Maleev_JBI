@@ -22,7 +22,7 @@ namespace SnackBarView
         {
             try
             {
-                List<SnackViewModel> list = APIClient.GetRequest<List<SnackViewModel>>("api/Snack/Get/");
+                List<SnackViewModel> list = APIClient.GetRequest<List<SnackViewModel>>("api/Snack/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
