@@ -3,7 +3,7 @@ namespace SnackBarServiceImplementDataBase.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigr : DbMigration
+    public partial class FirstM : DbMigration
     {
         public override void Up()
         {
@@ -46,15 +46,6 @@ namespace SnackBarServiceImplementDataBase.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Products",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ProductName = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.SnackProducts",
                 c => new
                     {
@@ -68,6 +59,15 @@ namespace SnackBarServiceImplementDataBase.Migrations
                 .ForeignKey("dbo.Snacks", t => t.SnackId, cascadeDelete: true)
                 .Index(t => t.SnackId)
                 .Index(t => t.ProductId);
+            
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductName = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.StockProducts",
@@ -97,9 +97,9 @@ namespace SnackBarServiceImplementDataBase.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.SnackProducts", "SnackId", "dbo.Snacks");
             DropForeignKey("dbo.StockProducts", "StockId", "dbo.Stocks");
             DropForeignKey("dbo.StockProducts", "ProductId", "dbo.Products");
-            DropForeignKey("dbo.SnackProducts", "SnackId", "dbo.Snacks");
             DropForeignKey("dbo.SnackProducts", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Orders", "SnackId", "dbo.Snacks");
             DropForeignKey("dbo.Orders", "ClientId", "dbo.Clients");
@@ -111,8 +111,8 @@ namespace SnackBarServiceImplementDataBase.Migrations
             DropIndex("dbo.Orders", new[] { "ClientId" });
             DropTable("dbo.Stocks");
             DropTable("dbo.StockProducts");
-            DropTable("dbo.SnackProducts");
             DropTable("dbo.Products");
+            DropTable("dbo.SnackProducts");
             DropTable("dbo.Snacks");
             DropTable("dbo.Orders");
             DropTable("dbo.Clients");

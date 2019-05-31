@@ -1,30 +1,17 @@
 ﻿using SnackBarServiceDAL.BindingModel;
-using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormStock : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IStockService service;
         private int? id;
-        public FormStock(IStockService service)
+        public FormStock()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormStock_Load(object sender, EventArgs e)
         {
@@ -32,7 +19,7 @@ namespace SnackBarView
             {
                 try
                 {
-                    StockViewModel view = service.GetElement(id.Value);
+                    StockViewModel view = APIClient.GetRequest<StockViewModel>("api/Stock/Get/" + id.Value);
                     if (view != null)
                     {
                      textBoxName.Text = view.НазваниеСклада;
@@ -63,7 +50,7 @@ namespace SnackBarView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new StockBindingModel
+                    APIClient.PostRequest<StockBindingModel, bool>("api/Stock/UpdElement", new StockBindingModel
                     {
                         Id = id.Value,
                         StockName = textBoxName.Text
@@ -71,7 +58,7 @@ namespace SnackBarView
                 }
                 else
                 {
-                    service.AddElement(new StockBindingModel
+                    APIClient.PostRequest<StockBindingModel, bool>("api/Stock/AddElement", new StockBindingModel
                     {
                         StockName = textBoxName.Text
                     });
@@ -91,6 +78,7 @@ namespace SnackBarView
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
+        }
+
     }
 }

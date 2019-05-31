@@ -66,17 +66,13 @@
     <Compile Include="Implementations\ReportServiceDB.cs" />
     <Compile Include="Implementations\SnackServiceDB.cs" />
     <Compile Include="Implementations\StockServiceDB.cs" />
-    <Compile Include="Migrations\201903160643096_FirstMigr.cs" />
-    <Compile Include="Migrations\201903160643096_FirstMigr.Designer.cs">
-      <DependentUpon>201903160643096_FirstMigr.cs</DependentUpon>
+    <Compile Include="Migrations\201905310832299_FirstM.cs" />
+    <Compile Include="Migrations\201905310832299_FirstM.Designer.cs">
+      <DependentUpon>201905310832299_FirstM.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904242352321_ThirdMig.cs" />
-    <Compile Include="Migrations\201904242352321_ThirdMig.Designer.cs">
-      <DependentUpon>201904242352321_ThirdMig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904242357552_SecondMig.cs" />
-    <Compile Include="Migrations\201904242357552_SecondMig.Designer.cs">
-      <DependentUpon>201904242357552_SecondMig.cs</DependentUpon>
+    <Compile Include="Migrations\201905310833328_SecondM.cs" />
+    <Compile Include="Migrations\201905310833328_SecondM.Designer.cs">
+      <DependentUpon>201905310833328_SecondM.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,14 +98,11 @@
     <None Include="Resources\TIMCYR.TTF" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903160643096_FirstMigr.resx">
-      <DependentUpon>201903160643096_FirstMigr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905310832299_FirstM.resx">
+      <DependentUpon>201905310832299_FirstM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904242352321_ThirdMig.resx">
-      <DependentUpon>201904242352321_ThirdMig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904242357552_SecondMig.resx">
-      <DependentUpon>201904242357552_SecondMig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905310833328_SecondM.resx">
+      <DependentUpon>201905310833328_SecondM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

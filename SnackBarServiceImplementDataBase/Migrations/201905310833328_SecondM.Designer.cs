@@ -7,13 +7,13 @@ namespace SnackBarServiceImplementDataBase.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SecondMig : IMigrationMetadata
+    public sealed partial class SecondM : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SecondMig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SecondM));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904242357552_SecondMig"; }
+            get { return "201905310833328_SecondM"; }
         }
         
         string IMigrationMetadata.Source

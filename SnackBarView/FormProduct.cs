@@ -2,33 +2,21 @@
 using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormProduct : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
 
         private readonly IProductService service;
 
         private int? id;
 
-        public FormProduct(IProductService service)
+        public FormProduct()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormProduct_Load(object sender, EventArgs e)
@@ -37,7 +25,7 @@ namespace SnackBarView
             {
                 try
                 {
-                    ProductViewModel view = service.GetElement(id.Value);
+                    ProductViewModel view = APIClient.GetRequest<ProductViewModel>("api/Product/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxProductName.Text = view.НазваниеПродукта;
@@ -61,18 +49,19 @@ namespace SnackBarView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ProductBindingModel
-                    {
-                        Id = id.Value,
-                        ProductName = textBoxProductName.Text
-                    });
+                    APIClient.PostRequest<ProductBindingModel, bool>("api/Product/UpdElement", new ProductBindingModel
+                   {
+                       Id = id.Value,
+                       ProductName = textBoxProductName.Text
+                   });
                 }
                 else
                 {
-                    service.AddElement(new ProductBindingModel
-                    {
-                        ProductName = textBoxProductName.Text
-                    });
+                    APIClient.PostRequest<ProductBindingModel,
+                   bool>("api/Product/AddElement", new ProductBindingModel
+                   {
+                       ProductName = textBoxProductName.Text
+                   });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

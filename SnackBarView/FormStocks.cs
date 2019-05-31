@@ -1,29 +1,16 @@
-﻿using SnackBarServiceDAL.Interfaces;
+﻿using SnackBarServiceDAL.BindingModel;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormStocks : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IStockService service;
-
-        public FormStocks(IStockService service)
+        public FormStocks()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStocks_Load(object sender, EventArgs e)
@@ -35,7 +22,7 @@ namespace SnackBarView
         {
             try
             {
-                List<StockViewModel> list = service.GetList();
+                List<StockViewModel> list = APIClient.GetRequest<List<StockViewModel>>("api/Stock/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -51,7 +38,7 @@ namespace SnackBarView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStock>();
+            var form = new FormStock();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -62,7 +49,7 @@ namespace SnackBarView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormStock>();
+                var form = new FormStock();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -80,7 +67,7 @@ namespace SnackBarView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<StockBindingModel, bool>("api/Stock/DelElement", new StockBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

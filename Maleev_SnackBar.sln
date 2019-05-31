@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarView", "SnackBarVie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarServiceImplementDataBase", "SnackBarServiceImplementDataBase\SnackBarServiceImplementDataBase.csproj", "{FB0864E8-EF12-4CE7-8B18-F4C15CE86C4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarRestApi", "SnackBarRestApi\SnackBarRestApi.csproj", "{48DB1D63-9267-44EA-BADA-FC191F3FA730}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FB0864E8-EF12-4CE7-8B18-F4C15CE86C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB0864E8-EF12-4CE7-8B18-F4C15CE86C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB0864E8-EF12-4CE7-8B18-F4C15CE86C4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48DB1D63-9267-44EA-BADA-FC191F3FA730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48DB1D63-9267-44EA-BADA-FC191F3FA730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48DB1D63-9267-44EA-BADA-FC191F3FA730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48DB1D63-9267-44EA-BADA-FC191F3FA730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

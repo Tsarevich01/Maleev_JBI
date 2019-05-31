@@ -1,43 +1,23 @@
 ﻿using SnackBarServiceDAL.BindingModel;
-using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IClientService serviceC;
-
-        private readonly ISnackService serviceS;
-
-        private readonly IMainService serviceM;
-
-        public FormCreateOrder(IClientService serviceC, ISnackService serviceS, IMainService serviceM)
+        public FormCreateOrder()
         {
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceS = serviceS;
-            this.serviceM = serviceM;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ClientViewModel> listC = serviceC.GetList();
+                List<ClientViewModel> listC = APIClient.GetRequest<List<ClientViewModel>>("api/Client/GetList");
                 if (listC != null)
                 {
                     comboBoxClient.DisplayMember = "ФИОЗаказчика";
@@ -45,7 +25,7 @@ namespace SnackBarView
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
                 }
-                List<SnackViewModel> listP = serviceS.GetList();
+                List<SnackViewModel> listP = APIClient.GetRequest<List<SnackViewModel>>("api/Snack/GetList");
                 if (listP != null)
                 {
                     comboBoxProduct.DisplayMember = "НазваниеЗакуски";
@@ -68,7 +48,7 @@ namespace SnackBarView
                 {
                     int count = Convert.ToInt32(textBoxCount.Text);
                     int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    SnackViewModel product = serviceS.GetElement(id);
+                    SnackViewModel product = APIClient.GetRequest<SnackViewModel>("api/Snack/Get/" + id);
                     textBoxSum.Text = (count * product.Цена).ToString();
                 }
                 catch (Exception ex)
@@ -108,12 +88,12 @@ namespace SnackBarView
             }
             try
             {
-                serviceM.CreateOrder(new OrderBindingModel
+                APIClient.PostRequest<OrderBindingModel, bool>("api/Main/CreateOrder", new OrderBindingModel
                 {
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     SnackId = Convert.ToInt32(comboBoxProduct.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToInt32(textBoxSum.Text)
+                    Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

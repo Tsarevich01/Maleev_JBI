@@ -1,39 +1,22 @@
 ﻿using SnackBarServiceDAL.BindingModel;
-using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormPutOnStock : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IStockService serviceS;
-        private readonly IProductService serviceC;
-        private readonly IMainService serviceM;
-        public FormPutOnStock(IStockService serviceS, IProductService serviceC,
-       IMainService serviceM)
+        public FormPutOnStock()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
         private void FormPutOnStock_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ProductViewModel> listC = serviceC.GetList();
+                List<ProductViewModel> listC = APIClient.GetRequest<List<ProductViewModel>>("api/Product/GetList");
                 if (listC != null)
                 {
                     comboBoxProduct.DisplayMember = "НазваниеПродукта";
@@ -41,7 +24,7 @@ namespace SnackBarView
                     comboBoxProduct.DataSource = listC;
                     comboBoxProduct.SelectedItem = null;
                 }
-                List<StockViewModel> listS = serviceS.GetList();
+                List<StockViewModel> listS = APIClient.GetRequest<List<StockViewModel>>("api/Stock/GetList");
                 if (listS != null)
                 {
                     comboBoxStock.DisplayMember = "НазваниеСклада";
@@ -78,10 +61,10 @@ namespace SnackBarView
             }
             try
             {
-                serviceM.PutProductOnStock(new StockProductBindingModel
+                APIClient.PostRequest<StockProductBindingModel, bool>("api/Stock/PutProductOnStore", new StockProductBindingModel
                 {
                     ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
-                    StockId = Convert.ToInt32(comboBoxStock.SelectedValue),
+                    StockId = Convert.ToInt32(comboBoxProduct.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

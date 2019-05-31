@@ -1,39 +1,23 @@
 ﻿using SnackBarServiceDAL.BindingModel;
-using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IMainService service;
-        private readonly IReportService reportService;
-
-        public FormMain(IMainService service, IReportService reportService)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = reportService;
         }
 
         private void LoadData()
         {
             try
             {
-                List<OrderViewModel> list = service.GetList();
+                List<OrderViewModel> list = APIClient.GetRequest<List<OrderViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -52,25 +36,25 @@ namespace SnackBarView
 
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClients>();
+            var form = new FormClients();
             form.ShowDialog();
         }
 
         private void продуктыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProducts>();
+            var form = new FormProducts();
             form.ShowDialog();
         }
 
         private void закускиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSnackss>();
+            var form = new FormSnackss();
             form.ShowDialog();
         }
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateOrder>();
+            var form = new FormCreateOrder();
             form.ShowDialog();
             LoadData();
         }
@@ -82,7 +66,11 @@ namespace SnackBarView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/TakeOrderInWork", new OrderBindingModel
+                    {
+                        Id = id
+                    });
+
                     LoadData();
                 }
                 catch (Exception ex)
@@ -99,7 +87,10 @@ namespace SnackBarView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/FinishOrder", new OrderBindingModel
+                    {
+                        Id = id
+                    });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -116,7 +107,10 @@ namespace SnackBarView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/.PayOrder", new OrderBindingModel
+                    {
+                        Id = id
+                    });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -133,13 +127,13 @@ namespace SnackBarView
 
         private void складыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStocks>();
+            var form = new FormStocks();
             form.ShowDialog();
         }
 
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPutOnStock>();
+            var form = new FormPutOnStock();
             form.ShowDialog();
         }
 
@@ -153,7 +147,7 @@ namespace SnackBarView
             {
                 try
                 {
-                    reportService.SaveSnackPrice(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveProductPrice", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -170,14 +164,14 @@ namespace SnackBarView
 
         private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClientOrders>();
+            var form = new FormClientOrders();
             form.ShowDialog();
 
         }
 
         private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStocksLoad>();
+            var form = new FormStocksLoad();
             form.ShowDialog();
         }
 

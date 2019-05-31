@@ -1,35 +1,21 @@
 ﻿using SnackBarServiceDAL.BindingModel;
-using SnackBarServiceDAL.Interfaces;
 using SnackBarServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace SnackBarView
 {
     public partial class FormSnacks : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
-        private readonly ISnackService service;
-
+        
         private int? id;
 
         private List<SnackProductViewModel> jbiSostavs;
 
-        public FormSnacks(ISnackService service)
+        public FormSnacks()
         {
-            this.service = service;
             InitializeComponent();
         }
 
@@ -39,7 +25,7 @@ namespace SnackBarView
             {
                 try
                 {
-                    SnackViewModel view = service.GetElement(id.Value);
+                    SnackViewModel view = APIClient.GetRequest<SnackViewModel>("api/Snack/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.НазваниеЗакуски;
@@ -102,7 +88,7 @@ namespace SnackBarView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormSnack>();
+                var form = new FormSnack();
                 form.Model = jbiSostavs[dataGridView.SelectedRows[0].Cells[0].RowIndex];
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -114,7 +100,7 @@ namespace SnackBarView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSnack>();
+            var form = new FormSnack();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.Model != null)
@@ -166,7 +152,7 @@ namespace SnackBarView
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new SnackBindingModel
+                    APIClient.PostRequest<SnackBindingModel, bool>("api/Snack/UpdElement", new SnackBindingModel
                     {
                         Id = id.Value,
                         SnackName = textBoxName.Text,
@@ -176,7 +162,7 @@ namespace SnackBarView
                 }
                 else
                 {
-                    service.AddElement(new SnackBindingModel
+                    APIClient.PostRequest<SnackBindingModel, bool>("api/Snack/AddElement", new SnackBindingModel
                     {
                         SnackName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
