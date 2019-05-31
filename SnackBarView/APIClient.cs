@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Net.Http.Headers;
+
 
 namespace SnackBarView
 {
@@ -38,5 +39,6 @@ namespace SnackBarView
             }
             throw new Exception(response.Result.Content.ReadAsStringAsync().Result);
         }
-    }
+    }
+
 }

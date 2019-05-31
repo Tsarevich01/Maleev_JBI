@@ -13,7 +13,7 @@ namespace SnackBarServiceImplementDataBase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905310808126_FirstM"; }
+            get { return "201905310832299_FirstM"; }
         }
         
         string IMigrationMetadata.Source
